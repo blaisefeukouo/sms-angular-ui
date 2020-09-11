@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import {Student} from '../modele/student';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { StudentService } from '../student.service';
+
+
 
 @Component({
   selector: 'app-student-detail',
@@ -6,10 +12,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./student-detail.component.css']
 })
 export class StudentDetailComponent implements OnInit {
+  //@Input() student: Student; //Input permet de dire que c'est un paramètre qui sera passé
+  student: Student;
+  constructor(
+    private route: ActivatedRoute,
+    private studentService: StudentService,
+    private location: Location
+  ) {}
 
-  constructor() { }
+  ngOnInit(): void {
+    this.getStudent();
+  }
+  
+  getStudent(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.studentService.getStudent(id)
+      .subscribe(student => this.student = student);
+  }
 
-  ngOnInit() {
+  goBack(): void {
+    this.location.back();
   }
 
 }
