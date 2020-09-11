@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+.container{
+    background-color: #ffffff;
+    border-radius: 0.3rem;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 1ph 8px; 
+            
+}
+
+.containerTop{         
+    padding: 10px;
+    -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 8;
+      
+  }
+  .containerBody{     
+    min-height: 700px;
+    margin-top: 20px;    
+  }
+
+  ::placeholder { 
+    
+    font-size: 0.8rem;    
+  }
+
+  .ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+  }
+  
+  .ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; /* red */
+  }

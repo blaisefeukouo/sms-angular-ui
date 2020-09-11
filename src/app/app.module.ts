@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { StudentDetailComponent } from './student-detail/student-detail.component';
 import { StudentAddComponent } from './student-add/student-add.component';
 import { HeroFormComponent } from './hero-form/hero-form.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HeroFormComponent } from './hero-form/hero-form.component';
     HeroFormComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule
   ],
