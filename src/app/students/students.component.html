@@ -1,1 +1,32 @@
-<p>students works!</p>
+<div>
+    <div class="container containerTop">
+      <a class="btn btn-primary"  routerLink="/student/add">New student</a>
+    </div>
+    <div class="container containerBody p-4">
+      <h2>List of students</h2>
+      <table class="table table-hover">
+        <thead>
+          <tr>   
+            <th scope="col">#</th>   
+            <th *ngFor="let items of studentsTableHeader" scope="col" class ="nav-item">
+              {{items.name}}          
+            </th>         
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of students; let rowIndex = index">
+            <th scope="row">{{rowIndex+1}}</th>
+            <td>{{student.matricule}}</td>
+            <td>{{student.firstName}}</td>
+            <td>{{student.lastName}}</td>
+            <td>{{student.phoneNumber}}</td> 
+            <td><a  routerLink="/detail/{{student.id}}">
+                  <i class="fa fa-eye" style="font-size: 20px;"></i>
+                </a>
+            </td>     
+          </tr> 
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
