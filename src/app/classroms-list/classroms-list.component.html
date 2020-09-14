@@ -1,39 +1,36 @@
 <div>
     <div class="container containerTop">
-      <a class="btn btn-primary"  routerLink="/student/add">New student</a>
+      <a class="btn btn-primary"  routerLink="/classroom/add">New classroom</a>
     </div>
     <div class="container containerBody p-4">
-      <h2>List of students</h2>
+      <h2>List of classrooms</h2>
       <table class="table table-hover">
         <thead>
           <tr>   
             <th scope="col">#</th>   
-            <th *ngFor="let items of studentsTableHeader" scope="col" class ="nav-item">
+            <th *ngFor="let items of clasroomsTableHeader" scope="col" class ="nav-item">
               {{items.name}}          
             </th>         
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let student of students; let rowIndex = index">
+          <tr *ngFor="let classroom of classrooms; let rowIndex = index">
             <th scope="row">{{rowIndex+1}}</th>
-            <td>{{student.matricule}}</td>
-            <td>{{student.firstName}}</td>
-            <td>{{student.lastName}}</td>
-            <td>{{student.phoneNumber}}</td> 
-            <td><a  routerLink="/student/edit/{{student.id}}">
+            <td>{{classroom.name}}</td>
+            <td>{{classroom.description}}</td>
+            <td>{{classroom.fees}}</td>            
+            <td><a  routerLink="/classroom/edit/{{classroom.id}}">
                   <i class="fa fa-edit" style="font-size: 20px;"></i>
                 </a>
             </td>  
-            <td><a  routerLink="/student/detail/{{student.id}}">
+            <td><a  routerLink="/classroom/detail/{{classroom.id}}">
                   <i class="fa fa-eye" style="font-size: 20px;"></i>
                 </a>
             </td>
-            <td>              
-
-              <button class="btn btn-outline-primary" (click)="open(autofocus, student)" style="margin-top: -12px; margin-bottom: -12px; height: 34px;">
+            <td> 
+              <button class="btn btn-outline-primary" (click)="open(deleteConfirmationPopup, classroom)" style="margin-top: -12px; margin-bottom: -12px; height: 34px;">
                 <i class="fa fa-trash" style="font-size: 20px;"></i>
-              </button>
-             
+              </button>             
             </td>       
           </tr> 
         </tbody>
@@ -41,7 +38,7 @@
     </div>
   </div>
 
-  <ng-template #autofocus let-modal>
+  <ng-template #deleteConfirmationPopup let-modal>
     <div class="modal-header" style="background-color: #f8d7da;">
       <h4 class="modal-title" id="modal-title">Attention</h4>
       <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
@@ -49,7 +46,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <p><strong>Do you really want to delete this student?</strong></p>      
+      <p><strong>Do you really want to delete this classroom?</strong></p>      
       <span class="text-danger">This operation can not be undone.</span>      
     </div>
     <div class="modal-footer">      

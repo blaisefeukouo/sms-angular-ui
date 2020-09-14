@@ -34,7 +34,7 @@ export class StudentService {
   }
 
   updateStudent(student: Student) {
-    return this.httpClient.put<Student>(this.studentsUrl, student);
+    return this.httpClient.put<Student>(this.studentsUrl+'/update', student);
   }
 
   deleteStudent(id:number) {    

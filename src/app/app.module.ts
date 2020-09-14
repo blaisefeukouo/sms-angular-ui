@@ -17,6 +17,11 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { StudentFormComponent } from './student-form/student-form.component';
 import { StudentEditComponent } from './student-edit/student-edit.component';
+import { ClassromsListComponent } from './classroms-list/classroms-list.component';
+import { ClassromsDetailsComponent } from './classroms-details/classroms-details.component';
+import { ClassromsEditComponent } from './classroms-edit/classroms-edit.component';
+import { ClassromsAddComponent } from './classroms-add/classroms-add.component';
+import { ClassromsFormComponent } from './classroms-form/classroms-form.component';
 
 
 
@@ -32,7 +37,12 @@ import { StudentEditComponent } from './student-edit/student-edit.component';
     StudentAddComponent,
     HeroFormComponent,
     StudentFormComponent,
-    StudentEditComponent
+    StudentEditComponent,
+    ClassromsListComponent,
+    ClassromsDetailsComponent,
+    ClassromsEditComponent,
+    ClassromsAddComponent,
+    ClassromsFormComponent
   ],
   imports: [
     HttpClientModule,

@@ -25,11 +25,11 @@ export class StudentFormComponent implements OnInit{
   onSubmit() { 
     if(this.student.id===null){
       this.studentService.updateStudent(this.student).subscribe( student => {
-        this.router.navigate(['detail/'+student.id])      
+        this.router.navigate(['student/detail/'+student.id])      
       });
     }else{
       this.studentService.saveStudent(this.student).subscribe( student => {
-        this.router.navigate(['detail/'+student.id])      
+        this.router.navigate(['student/detail/'+student.id])      
       });
     }
     

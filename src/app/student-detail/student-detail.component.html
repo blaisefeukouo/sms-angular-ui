@@ -1,9 +1,10 @@
-<div>
+<div *ngIf="student; else loggedOut">
     <div class="container containerTop">
         <button class="btn btn-success" (click)="goBack()">List</button>
+        <a class="btn btn-primary"  routerLink="/student/edit/{{student.id}}" style="margin-left: 5px;">Edit</a>
     </div>
 
-    <div class="container containerBody p-4" *ngIf="student; else loggedOut"> 
+    <div class="container containerBody p-4" > 
         <h2>Student details</h2>        
         <div>
             <div class="form-group row">

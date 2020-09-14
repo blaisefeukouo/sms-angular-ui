@@ -1,0 +1,29 @@
+<div *ngIf="classroom; else loggedOut">
+    <div class="container containerTop">
+        <button class="btn btn-success" (click)="goBack()">List</button>
+        <a class="btn btn-primary"  routerLink="/classroom/edit/{{classroom.id}}" style="margin-left: 5px;">Edit</a>
+    </div>
+
+    <div class="container containerBody p-4" > 
+        <h2>Classroom details</h2>        
+        <div>
+            <div class="form-group row">
+                <label for="nameLabel" class="col-sm-3 col-form-label ">Name</label>                
+                <label for="nameValue" class="col-sm-3 col-form-label ">: {{classroom.name}}</label>                                                         
+            </div>
+      
+            <div class="form-group row">
+                <label for="descriptionLabel" class="col-sm-3 col-form-label">Description</label>
+                <label for="descriptionValue" class="col-sm-3 col-form-label ">: {{classroom.description}}</label>                
+            </div>
+            <div class="form-group row">
+                <label for="feesLabel" class="col-sm-3 col-form-label">Fees</label>
+                <label for="feesValue" class="col-sm-3 col-form-label ">: {{classroom.fees}}</label>                
+            </div>             
+        </div>         
+     </div>
+ </div> 
+ 
+ <ng-template #loggedOut>
+    Please select somethong to display
+</ng-template>   
