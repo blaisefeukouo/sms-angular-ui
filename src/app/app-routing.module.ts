@@ -5,6 +5,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {StudentDetailComponent} from './student-detail/student-detail.component';
 import {StudentAddComponent} from './student-add/student-add.component';
 import { HeroFormComponent } from './hero-form/hero-form.component';
+import { StudentEditComponent } from './student-edit/student-edit.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   //adding the defaut route
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'detail/:id', component: StudentDetailComponent },
+  { path: 'edit/:id', component: StudentEditComponent },
   { path: 'hero-form', component: HeroFormComponent },
 ];
 

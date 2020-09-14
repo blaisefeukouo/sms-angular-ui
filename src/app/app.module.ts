@@ -15,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { StudentFormComponent } from './student-form/student-form.component';
+import { StudentEditComponent } from './student-edit/student-edit.component';
 
 
 
@@ -28,7 +30,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     DashboardComponent,
     StudentDetailComponent,
     StudentAddComponent,
-    HeroFormComponent
+    HeroFormComponent,
+    StudentFormComponent,
+    StudentEditComponent
   ],
   imports: [
     HttpClientModule,

@@ -10,8 +10,8 @@ export class StudentService {
   
   constructor(private httpClient: HttpClient) { }
   
-  private studentsUrl = 'http://localhost:8080/rest/students';
-  //private studentsUrl = 'https://fblaise-sms.herokuapp.com/rest/students';
+  //private studentsUrl = 'http://localhost:8080/rest/students';
+  private studentsUrl = 'https://fblaise-sms.herokuapp.com/rest/students';
 
    //methode synchrone
   getStudents(): Student[] {
