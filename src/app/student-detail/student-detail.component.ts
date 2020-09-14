@@ -3,6 +3,7 @@ import {Student} from '../modele/student';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { StudentService } from '../student.service';
+import {Router} from "@angular/router"
 
 
 
@@ -17,7 +18,7 @@ export class StudentDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private studentService: StudentService,
-    private location: Location
+    private location: Location, private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -31,7 +32,8 @@ export class StudentDetailComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+    //this.location.back();
+    this.router.navigate(['/students/'])
   }
 
 }

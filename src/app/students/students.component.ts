@@ -1,7 +1,7 @@
 import { Component, OnInit, APP_BOOTSTRAP_LISTENER } from '@angular/core';
 import {Student} from '../modele/student';
-
-import {StudentService} from '../student.service'
+import {StudentService} from '../student.service';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-students',
@@ -19,7 +19,8 @@ export class StudentsComponent implements OnInit {
   students:Student[];
   selectedStudent: Student;
 
-  constructor(private studentService:StudentService) { }
+  closeResult: string;
+  constructor(private studentService:StudentService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.loadStudents();
@@ -38,6 +39,34 @@ export class StudentsComponent implements OnInit {
   //Appel Synchrone
   getStudents(): void {
     this.students = this.studentService.getStudents();
+  }
+
+  
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
+
+  open(content, student:Student) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `${result}`;
+      if('OK'===this.closeResult){
+        this.deleteStudent(student);
+      }
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  deleteStudent(student:Student){
+    this.studentService.deleteStudent(student.id).subscribe((response) => {      
+      this.loadStudents();
+    });
   }
 
 }

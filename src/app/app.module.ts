@@ -13,6 +13,10 @@ import { StudentAddComponent } from './student-add/student-add.component';
 import { HeroFormComponent } from './hero-form/hero-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+
 
 @NgModule({
   declarations: [
@@ -29,7 +33,9 @@ import {FormsModule} from '@angular/forms';
   imports: [
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
+    NgbModule,
     AppRoutingModule
   ],
   providers: [],

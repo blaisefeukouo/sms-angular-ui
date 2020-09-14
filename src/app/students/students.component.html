@@ -21,12 +21,41 @@
             <td>{{student.lastName}}</td>
             <td>{{student.phoneNumber}}</td> 
             <td><a  routerLink="/detail/{{student.id}}">
+                  <i class="fa fa-edit" style="font-size: 20px;"></i>
+                </a>
+            </td>  
+            <td><a  routerLink="/detail/{{student.id}}">
                   <i class="fa fa-eye" style="font-size: 20px;"></i>
                 </a>
-            </td>     
+            </td>
+            <td>              
+
+              <button class="btn btn-outline-primary" (click)="open(autofocus, student)" style="margin-top: -12px; margin-bottom: -12px; height: 34px;">
+                <i class="fa fa-trash" style="font-size: 20px;"></i>
+              </button>
+             
+            </td>       
           </tr> 
         </tbody>
       </table>
     </div>
   </div>
+
+  <ng-template #autofocus let-modal>
+    <div class="modal-header" style="background-color: #f8d7da;">
+      <h4 class="modal-title" id="modal-title">Attention</h4>
+      <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p><strong>Do you really want to delete this student?</strong></p>      
+      <span class="text-danger">This operation can not be undone.</span>      
+    </div>
+    <div class="modal-footer">      
+      <button type="button" ngbAutofocus class="btn btn-danger" (click)="modal.close('OK')">Ok</button>
+      <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+    </div>
+  </ng-template>
+  
   

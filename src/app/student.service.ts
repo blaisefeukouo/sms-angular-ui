@@ -10,20 +10,20 @@ export class StudentService {
   
   constructor(private httpClient: HttpClient) { }
   
-  //private studentsUrl = 'http://localhost:8080/rest/students';
-  private studentsUrl = 'https://fblaise-sms.herokuapp.com/rest/students';
+  private studentsUrl = 'http://localhost:8080/rest/students';
+  //private studentsUrl = 'https://fblaise-sms.herokuapp.com/rest/students';
 
-  //methode Asynchrone
-  getAsynchroneStudents(): Observable<Student[]> {
-        //return of(STUDENTS);
-    return this.httpClient.get<Student[]>(this.studentsUrl+'/list');
-  }
-
-  //methode synchrone
+   //methode synchrone
   getStudents(): Student[] {
     //return STUDENTS;
     return null;
   }
+
+  //methode Asynchrone
+  getAsynchroneStudents(): Observable<Student[]> {
+    //return of(STUDENTS);
+    return this.httpClient.get<Student[]>(this.studentsUrl+'/list');
+  } 
 
   getStudent(id: number): Observable<Student> {   
     return this.httpClient.get<Student>(this.studentsUrl+'/view.htm/'+id);
@@ -33,12 +33,12 @@ export class StudentService {
     return this.httpClient.post<Student>(this.studentsUrl+'/save', student);
   }
 
-    updateStudent(student: Student) {
+  updateStudent(student: Student) {
     return this.httpClient.put<Student>(this.studentsUrl, student);
   }
 
-  public deletestudent(student: Student) {
-    return this.httpClient.delete(this.studentsUrl + "/remove/"+ student.id);
+  deleteStudent(id:number) {    
+    return this.httpClient.delete(this.studentsUrl+"/remove/"+ id);
   }
 
 }
