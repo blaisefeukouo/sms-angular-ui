@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Student} from './modele/student';
 import { Observable, of } from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import { GlobalConstants } from './modele/global-constants';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class StudentService {
   constructor(private httpClient: HttpClient) { }
   
   //private studentsUrl = 'http://localhost:8080/rest/students';
-  private studentsUrl = 'https://fblaise-sms.herokuapp.com/rest/students';
+  private studentsUrl =  GlobalConstants.restBaseUrl+'/students';
 
    //methode synchrone
   getStudents(): Student[] {

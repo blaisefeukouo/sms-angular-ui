@@ -2,7 +2,7 @@
     <h3>Top students</h3>
     <div class="grid grid-pad">
       <a *ngFor="let student of students" class="col-1-4"
-          routerLink="/detail/{{student.id}}">
+          routerLink="/student/detail/{{student.id}}">
         <div class="module hero">
           <h4>{{student.firstName}} {{student.lastName}}</h4>
         </div>

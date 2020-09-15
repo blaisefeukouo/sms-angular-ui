@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import { Classroom } from './modele/classroom';
+import { GlobalConstants } from './modele/global-constants';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,7 @@ export class ClassroomsService {
 
   constructor(private httpClient: HttpClient) { }
   
-  //private classroomsUrl = 'http://localhost:8080/rest/classrooms';
-  private classroomsUrl = 'https://fblaise-sms.herokuapp.com/rest/classrooms';
-
+  private classroomsUrl =  GlobalConstants.restBaseUrl+'/classrooms';  
    
   //methode Asynchrone
   getAsynchroneClassrooms(): Observable<Classroom[]> {
@@ -24,7 +23,8 @@ export class ClassroomsService {
   }
 
   saveClassroom(classroom: Classroom) {
-    return this.httpClient.post<Classroom>(this.classroomsUrl+'/save', classroom);
+    var currentSchoolYear= sessionStorage.getItem(GlobalConstants.currentSchoolYear);    
+    return this.httpClient.post<Classroom>(this.classroomsUrl+'/save/'+currentSchoolYear, classroom);
   }
 
   updateClassroom(classroom: Classroom) {

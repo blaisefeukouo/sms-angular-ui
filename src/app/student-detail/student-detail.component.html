@@ -38,6 +38,12 @@
               <div class="form-group row">
                 <label for="motherPhoneNumberLabel" class="col-sm-3 col-form-label">Mother phone number</label>
                 <label for="motherPhoneNumberValue" class="col-sm-3 col-form-label ">: {{student.motherPhoneNumber}}</label> 
+              </div>  
+              <div class="form-group row">
+                <label for="classroomLabel" class="col-sm-3 col-form-label">Classroom</label>
+                <label *ngIf="student.currentClassroom" for="classroomLabelValue" class="col-sm-3 col-form-label ">
+                    <a routerLink="/classroom/detail/{{student.currentClassroom.id}}">: {{student.currentClassroom.name}}</a>
+                </label> 
               </div>    
         </div>         
      </div>

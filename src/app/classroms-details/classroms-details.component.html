@@ -1,6 +1,7 @@
 <div *ngIf="classroom; else loggedOut">
     <div class="container containerTop">
-        <button class="btn btn-success" (click)="goBack()">List</button>
+        <button class="btn btn-success" (click)="goBack()">Back</button>
+        <button class="btn btn-success" (click)="backToList()" style="margin-left: 5px;">List</button>
         <a class="btn btn-primary"  routerLink="/classroom/edit/{{classroom.id}}" style="margin-left: 5px;">Edit</a>
     </div>
 

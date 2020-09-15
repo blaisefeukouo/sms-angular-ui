@@ -17,13 +17,13 @@ export class StudentsComponent implements OnInit {
   ];
 
   students:Student[];
-  selectedStudent: Student;
-
+  selectedStudent: Student;  
+  
   closeResult: string;
   constructor(private studentService:StudentService, private modalService: NgbModal) { }
 
   ngOnInit() {
-    this.loadStudents();
+    this.loadStudents();    
   }
   
   onSelectStudent(student: Student): void {

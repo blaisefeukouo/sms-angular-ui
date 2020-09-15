@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Classroom } from '../modele/classroom';
 import { ClassroomsService } from '../classrooms.service';
 import { Router } from '@angular/router';
+import { GlobalConstants } from '../modele/global-constants';
 
 @Component({
   selector: 'app-classroms-form',
@@ -19,6 +20,10 @@ export class ClassromsFormComponent implements OnInit {
   }
 
   onSubmit() { 
+
+    var currentSchoolYear= sessionStorage.getItem(GlobalConstants.currentSchoolYear); 
+
+    alert('selected schoolYear '+currentSchoolYear)
     if(this.classroom.id===null){
       this.classroomService.updateClassroom(this.classroom).subscribe( classroom => {
         this.router.navigate(['classroom/detail/'+classroom.id])      

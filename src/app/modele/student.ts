@@ -1,3 +1,5 @@
+import { Classroom } from './classroom';
+
 export class Student {
 
       public id: number;
@@ -8,5 +10,6 @@ export class Student {
       public email: string ;
       public fatherPhoneNumber: string;
       public motherPhoneNumber: string ;  
+      public currentClassroom: Classroom;
   
   }

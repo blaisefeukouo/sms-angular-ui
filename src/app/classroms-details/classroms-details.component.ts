@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Classroom } from '../modele/classroom';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClassroomsService } from '../classrooms.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-classroms-details',
@@ -14,7 +15,8 @@ export class ClassromsDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private classroomService: ClassroomsService,
-    private router: Router
+    private router: Router,
+    private location:Location
   ) {}
 
   ngOnInit(): void {
@@ -27,8 +29,12 @@ export class ClassromsDetailsComponent implements OnInit {
       .subscribe(classroom => this.classroom = classroom);
   }
 
-  goBack(): void {    
+  backToList(): void {    
     this.router.navigate(['/classrooms'])
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }
