@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {Student} from '../modele/student';
 import {StudentService} from '../student.service';
 import {Router} from "@angular/router";
+import {finalize} from 'rxjs/operators'
 
 @Component({
   selector: 'app-student-form',
@@ -12,6 +13,7 @@ export class StudentFormComponent implements OnInit{
   @Input() formTitle: String;
   @Input() student= new Student();
   @Input() isAddForm:boolean;
+  loading = false;
   
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"; 
   
@@ -22,17 +24,38 @@ export class StudentFormComponent implements OnInit{
 
   submitted = false;
 
-  onSubmit() { 
+  onSubmit() {
+    this.loading=true; 
     if(this.student.id===null){
-      this.studentService.updateStudent(this.student).subscribe( student => {
-        this.router.navigate(['student/detail/'+student.id])      
-      });
+      this.studentService.updateStudent(this.student).pipe(
+        finalize(() => {
+          this.loading = false
+        })
+      ).subscribe( student => {
+          this.navigateToDetails(student.id);
+        },
+        err=>{
+          console.error('Error while getting data from server')
+        }
+      );
     }else{
-      this.studentService.saveStudent(this.student).subscribe( student => {
-        this.router.navigate(['student/detail/'+student.id])      
-      });
+      this.studentService.saveStudent(this.student).pipe(
+        finalize(() => {
+          this.loading = false
+        })
+      ).subscribe( student => {
+          this.navigateToDetails(student.id);
+        },
+        err=>{
+          console.error('Error while getting data from server')
+        }
+      );
     }
     
   } 
+
+  navigateToDetails(studentId:number): void{
+    this.router.navigate(['student/detail/'+studentId])          
+  }
 
 }

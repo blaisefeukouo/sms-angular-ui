@@ -3,6 +3,7 @@ import { Classroom } from '../modele/classroom';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClassroomsService } from '../classrooms.service';
 import { Location } from '@angular/common';
+import {finalize} from 'rxjs/operators'
 
 @Component({
   selector: 'app-classroms-details',
@@ -12,6 +13,7 @@ import { Location } from '@angular/common';
 export class ClassromsDetailsComponent implements OnInit {
 
   classroom: Classroom;
+  loading = false;
   constructor(
     private route: ActivatedRoute,
     private classroomService: ClassroomsService,
@@ -24,9 +26,18 @@ export class ClassromsDetailsComponent implements OnInit {
   }
   
   getclassroom(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.classroomService.getClassroom(id)
-      .subscribe(classroom => this.classroom = classroom);
+    this.loading = true;
+    const classroomId = +this.route.snapshot.paramMap.get('id');
+    this.classroomService.getClassroom(classroomId).pipe(
+      finalize(() => this.loading = false)
+    ).subscribe(
+        classroom => {
+          this.classroom = classroom
+        },
+        err=>{
+          console.error('Error while getting data from server')
+        }
+    );
   }
 
   backToList(): void {    

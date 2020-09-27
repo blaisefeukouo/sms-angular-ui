@@ -13,7 +13,7 @@
             </th>         
           </tr>
         </thead>
-        <tbody>
+        <tbody *ngIf="!loading">
           <tr *ngFor="let student of students; let rowIndex = index">
             <th scope="row">{{rowIndex+1}}</th>
             <td>{{student.matricule}}</td>
@@ -28,16 +28,15 @@
                   <i class="fa fa-eye" style="font-size: 20px;"></i>
                 </a>
             </td>
-            <td>              
-
+            <td>           
               <button class="btn btn-outline-primary" (click)="open(autofocus, student)" style="margin-top: -12px; margin-bottom: -12px; height: 34px;">
                 <i class="fa fa-trash" style="font-size: 20px;"></i>
               </button>
-             
             </td>       
           </tr> 
         </tbody>
       </table>
+      <app-loading-indicator *ngIf="loading"></app-loading-indicator>
     </div>
   </div>
 

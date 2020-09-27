@@ -2,6 +2,7 @@ import { Component, OnInit, APP_BOOTSTRAP_LISTENER } from '@angular/core';
 import {Student} from '../modele/student';
 import {StudentService} from '../student.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {finalize} from 'rxjs/operators'
 
 @Component({
   selector: 'app-students',
@@ -18,7 +19,7 @@ export class StudentsComponent implements OnInit {
 
   students:Student[];
   selectedStudent: Student;  
-  
+  loading = false;
   closeResult: string;
   constructor(private studentService:StudentService, private modalService: NgbModal) { }
 
@@ -33,7 +34,17 @@ export class StudentsComponent implements OnInit {
 
   //Appel Anynchrone
   loadStudents(): void {
-    this.studentService.getAsynchroneStudents().subscribe(students=>this.students=students);    
+    this.loading=true;
+    this.studentService.getAsynchroneStudents().pipe(
+      finalize(() => {
+        this.loading = false
+      })
+    ).subscribe(students=>{
+      this.students=students
+    },
+    err=>{
+      console.error('Error while getting data from server')
+    });    
   }
 
   //Appel Synchrone

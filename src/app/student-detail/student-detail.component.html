@@ -1,12 +1,13 @@
-<div *ngIf="student; else loggedOut">
+<div >
     <div class="container containerTop">
         <button class="btn btn-success" (click)="goBack()">List</button>
-        <a class="btn btn-primary"  routerLink="/student/edit/{{student.id}}" style="margin-left: 5px;">Edit</a>
+        <a *ngIf="student" class="btn btn-primary" routerLink="/student/edit/{{student.id}}" style="margin-left: 5px;">Edit</a>
     </div>
 
     <div class="container containerBody p-4" > 
-        <h2>Student details</h2>        
-        <div>
+        <h2>Student details</h2>
+        <app-loading-indicator *ngIf="loading"></app-loading-indicator>        
+        <div *ngIf="student">
             <div class="form-group row">
                 <label for="matriculeLabel" class="col-sm-3 col-form-label ">Registration number</label>                
                 <label for="matriculeValue" class="col-sm-3 col-form-label ">: {{student.matricule}}</label>                                                         
@@ -49,6 +50,6 @@
      </div>
  </div> 
  
- <ng-template #loggedOut>
+ <!--<ng-template #loggedOut>
     Please select somethong to display
-</ng-template>   
+</ng-template>   -->

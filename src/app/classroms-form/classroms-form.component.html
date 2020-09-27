@@ -1,12 +1,13 @@
-<div>  
-    <form (ngSubmit)="onSubmit()" #classroomForm="ngForm">      
+<div>     
+    <form (ngSubmit)="onSubmit()" #classroomForm="ngForm">          
         <div class="container containerTop">
             <button type="submit" class="btn btn-primary" [disabled]="!classroomForm.form.valid" >Submit</button>
             <a class="btn btn-secondary" style="margin-left: 5px;" routerLink="/classrooms">Cancel</a>     
         </div>
-     
-        <div class="container containerBody p-4"  *ngIf="classroom || isAddForm">       
-            <h2>{{formTitle}}</h2>        
+        
+        <div class="container containerBody p-4"  *ngIf="classroom || isAddForm">                               
+            <h2>{{formTitle}}</h2> 
+            <app-loading-indicator *ngIf="loading"></app-loading-indicator>        
             <div class="form-group row">
             <label for="name" class="col-sm-3 col-form-label ">Name</label>
             <div class="col-sm-8">
@@ -40,5 +41,6 @@
                 </div>           
             </div>       
         </div>
-    </form>  
+    </form> 
+    
 </div> 

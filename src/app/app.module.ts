@@ -22,6 +22,7 @@ import { ClassromsDetailsComponent } from './classroms-details/classroms-details
 import { ClassromsEditComponent } from './classroms-edit/classroms-edit.component';
 import { ClassromsAddComponent } from './classroms-add/classroms-add.component';
 import { ClassromsFormComponent } from './classroms-form/classroms-form.component';
+import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
 
 
 
@@ -42,7 +43,8 @@ import { ClassromsFormComponent } from './classroms-form/classroms-form.componen
     ClassromsDetailsComponent,
     ClassromsEditComponent,
     ClassromsAddComponent,
-    ClassromsFormComponent
+    ClassromsFormComponent,
+    LoadingIndicatorComponent
   ],
   imports: [
     HttpClientModule,

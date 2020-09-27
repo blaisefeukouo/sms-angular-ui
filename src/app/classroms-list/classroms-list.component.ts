@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Classroom } from '../modele/classroom';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ClassroomsService } from '../classrooms.service';
+import {finalize} from 'rxjs/operators'
 
 
 @Component({
@@ -18,6 +19,7 @@ export class ClassromsListComponent implements OnInit {
 
   classrooms:Classroom[];
   closeResult: string;
+  loading = false;
   constructor(private classroomsService:ClassroomsService, private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -26,12 +28,23 @@ export class ClassromsListComponent implements OnInit {
   
   //Appel Anynchrone
   loadClassrooms(): void {
-    this.classroomsService.getAsynchroneClassrooms().subscribe(classrooms=>this.classrooms=classrooms);    
+    this.loading=true;
+    this.classroomsService.getAsynchroneClassrooms().pipe(
+      finalize(() => this.loading = false)
+    ).subscribe(
+      classrooms=>{
+        this.classrooms=classrooms
+      },
+      err=>{
+        console.error('Error while getting data from server')
+      }
+    );  
+    
   }
 
 
-  open(content, classroom:Classroom) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+  openModal(modal, classroom:Classroom): void {
+    this.modalService.open(modal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `${result}`;
       if('OK'===this.closeResult){
         this.deleteClassroom(classroom);
@@ -39,7 +52,7 @@ export class ClassromsListComponent implements OnInit {
     });
   }
 
-  deleteClassroom(classroom:Classroom){
+  deleteClassroom(classroom:Classroom): void{
     this.classroomsService.deleteClassroom(classroom.id).subscribe((response) => {      
       this.loadClassrooms();
     });

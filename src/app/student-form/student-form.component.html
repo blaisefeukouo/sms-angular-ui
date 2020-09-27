@@ -6,7 +6,8 @@
         </div>
      
         <div class="container containerBody p-4"  *ngIf="student || isAddForm">       
-            <h2>{{formTitle}}</h2>        
+            <h2>{{formTitle}}</h2>  
+            <app-loading-indicator *ngIf="loading"></app-loading-indicator>       
             <div class="form-group row">
             <label for="matricule" class="col-sm-3 col-form-label ">Registration number</label>
             <div class="col-sm-8">
