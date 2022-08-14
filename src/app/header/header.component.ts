@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SchoolyearsService } from '../schoolYear/schoolyears.service';
+import { SchoolyearsService } from '../schoolyear/schoolyears.service';
 import { SchoolYear } from '../modele/schoolyear';
 import { GlobalConstants } from '../modele/global-constants';
 import { Router } from '@angular/router';
