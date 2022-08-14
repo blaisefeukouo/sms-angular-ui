@@ -1,0 +1,36 @@
+<div >
+    <div class="container containerTop">
+        <button class="btn btn-success" (click)="goBack()">List</button>
+        <a *ngIf="schoolyear" class="btn btn-primary" routerLink="/schoolyear/edit/{{schoolyear.id}}" style="margin-left: 5px;">Edit</a>
+    </div>
+
+    <div class="container containerBody p-4" > 
+        <h2>Schoolyear details</h2>
+        <app-loading-indicator *ngIf="loading"></app-loading-indicator>        
+        <div *ngIf="schoolyear">
+            <div class="form-group row">
+                <label for="nameLabel" class="col-sm-3 col-form-label ">Name</label>                
+                <label for="nameValue" class="col-sm-3 col-form-label ">: {{schoolyear.name}}</label>                                                         
+            </div>
+      
+            <div class="form-group row">
+                <label for="startDateLabel" class="col-sm-3 col-form-label">Star date</label>
+                <label for="startDateValue" class="col-sm-3 col-form-label ">: {{schoolyear.startDate}}</label>                
+            </div>
+            <div class="form-group row">
+                <label for="endDateLabel" class="col-sm-3 col-form-label">End date</label>
+                <label for="endDateValue" class="col-sm-3 col-form-label ">: {{schoolyear.endDate}}</label>                
+            </div>
+      
+            <div class="form-group row">
+                <label for="stateLabel" class="col-sm-3 col-form-label ">State</label>
+                <label for="stateValue" class="col-sm-3 col-form-label ">: {{schoolyear.state}}</label>
+            </div>
+            
+        </div>         
+     </div>
+ </div> 
+ 
+ <!--<ng-template #loggedOut>
+    Please select somethong to display
+</ng-template>   -->

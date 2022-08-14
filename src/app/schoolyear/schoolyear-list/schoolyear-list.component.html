@@ -1,0 +1,59 @@
+<div >
+    <div class="container containerTop">
+      <a class="btn btn-primary"  routerLink="/schoolyear/add">New schoolyear</a>
+    </div>
+    <div class="container containerBody p-4">
+      <h2>List of schoolyears</h2>
+      <table class="table table-hover">
+        <thead>
+          <tr>   
+            <th scope="col">#</th>   
+            <th *ngFor="let items of schoolyearTableHeader" scope="col" class ="nav-item">
+              {{items.name}}          
+            </th>         
+          </tr>
+        </thead>
+        <tbody *ngIf="!loading">
+          <tr *ngFor="let schoolyear of schoolyears; let rowIndex = index">
+            <th scope="row">{{rowIndex+1}}</th>
+            <td>{{schoolyear.name}}</td>
+            <td>{{schoolyear.startDate}}</td>
+            <td>{{schoolyear.endDate}}</td>            
+            <td>{{schoolyear.state}}</td>  
+            <td><a  routerLink="/schoolyear/edit/{{schoolyear.id}}">
+                  <i class="fa fa-edit" style="font-size: 20px;"></i>
+                </a>
+            </td>  
+            <td><a  routerLink="/schoolyear/detail/{{schoolyear.id}}">
+                  <i class="fa fa-eye" style="font-size: 20px;"></i>
+                </a>
+            </td>
+            <td> 
+              <button class="btn btn-outline-primary" (click)="openModal(deleteConfirmationPopup, schoolyear)" style="margin-top: -12px; margin-bottom: -12px; height: 34px;">
+                <i class="fa fa-trash" style="font-size: 20px;"></i>
+              </button>             
+            </td>       
+          </tr> 
+        </tbody>      
+      </table>
+      <app-loading-indicator *ngIf="loading"></app-loading-indicator>
+    </div>
+  </div>
+    
+  
+  <ng-template #deleteConfirmationPopup let-modal>
+    <div class="modal-header" style="background-color: #f8d7da;">
+      <h4 class="modal-title" id="modal-title">Attention</h4>
+      <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p><strong>Do you really want to delete this classroom?</strong></p>      
+      <span class="text-danger">This operation can not be undone.</span>      
+    </div>
+    <div class="modal-footer">      
+      <button type="button" ngbAutofocus class="btn btn-danger" (click)="modal.close('OK')">Ok</button>
+      <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+    </div>
+  </ng-template> 

@@ -23,7 +23,7 @@ export class ClassromsFormComponent implements OnInit {
 
   onSubmit(): void { 
     this.loading=true;
-    var currentSchoolYear= sessionStorage.getItem(GlobalConstants.currentSchoolYear); 
+    var currentSchoolYear= sessionStorage.getItem(GlobalConstants.currentSchoolYearName); 
 
     //alert('selected schoolYear '+currentSchoolYear)
     if(this.classroom.id===null){

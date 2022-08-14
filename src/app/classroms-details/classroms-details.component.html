@@ -3,6 +3,7 @@
         <button class="btn btn-success" (click)="goBack()">Back</button>
         <button class="btn btn-success" (click)="backToList()" style="margin-left: 5px;">List</button>
         <a *ngIf="classroom" class="btn btn-primary"  routerLink="/classroom/edit/{{classroom.id}}" style="margin-left: 5px;">Edit</a>
+        <a *ngIf="classroom" class="btn btn-primary"  routerLink="/classroom/edit/{{classroom.id}}" style="margin-left: 5px;">Add student</a>
     </div>
 
     <div class="container containerBody p-4" > 
@@ -22,8 +23,67 @@
                 <label for="feesLabel" class="col-sm-3 col-form-label">Fees</label>
                 <label for="feesValue" class="col-sm-3 col-form-label ">: {{classroom.fees}}</label>                
             </div>             
-        </div>         
+        </div>    
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a href="#students" class="nav-link active" data-toggle="tab">Students</a>
+            </li>
+            <!--<li class="nav-item">
+                <a href="#profile" class="nav-link" data-toggle="tab">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a href="#messages" class="nav-link" data-toggle="tab">Messages</a>
+            </li>-->
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="students">
+                <table class="table table-hover">
+                    <thead>
+                      <tr>   
+                        <th scope="col">#</th>   
+                        <th *ngFor="let items of studentsTableHeader" scope="col" class ="nav-item">
+                          {{items.name}}          
+                        </th>         
+                      </tr>
+                    </thead>
+                    <tbody *ngIf="!loading">
+                      <tr *ngFor="let student of students; let rowIndex = index">
+                        <th scope="row">{{rowIndex+1}}</th>
+                        <td>{{student.matricule}}</td>
+                        <td>{{student.firstName}}</td>
+                        <td>{{student.lastName}}</td>
+                        <td>{{student.phoneNumber}}</td> 
+                        <td><a  routerLink="/student/edit/{{student.id}}">
+                              <i class="fa fa-edit" style="font-size: 20px;"></i>
+                            </a>
+                        </td>  
+                        <td><a  routerLink="/student/detail/{{student.id}}">
+                              <i class="fa fa-eye" style="font-size: 20px;"></i>
+                            </a>
+                        </td>
+                        <td>           
+                          <button class="btn btn-outline-primary" (click)="open(autofocus, student)" style="margin-top: -12px; margin-bottom: -12px; height: 34px;">
+                            <i class="fa fa-trash" style="font-size: 20px;"></i>
+                          </button>
+                        </td>       
+                      </tr> 
+                    </tbody>
+                  </table>
+                      
+            </div>
+
+
+            <div class="tab-pane fade" id="profile">
+                <h4 class="mt-2">Profile tab content</h4>
+                <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+            </div>
+            <div class="tab-pane fade" id="messages">
+                <h4 class="mt-2">Messages tab content</h4>
+                <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis.</p>
+            </div>
+        </div>    
      </div>
+     
  </div> 
  
    

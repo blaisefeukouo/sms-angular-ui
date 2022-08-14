@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ClassroomsService } from '../classrooms.service';
 import { Location } from '@angular/common';
 import {finalize} from 'rxjs/operators'
+import { Student } from '../modele/student';
 
 @Component({
   selector: 'app-classroms-details',
@@ -13,6 +14,13 @@ import {finalize} from 'rxjs/operators'
 export class ClassromsDetailsComponent implements OnInit {
 
   classroom: Classroom;
+  students: Student[];
+  studentsTableHeader=[
+    {linkId:1, name: 'Registration number'},
+    {linkId:2, name: 'Firstname'},
+    {linkId:3, name: 'Lastname'},
+    {linkId:4, name: 'Phone number'},
+  ];
   loading = false;
   constructor(
     private route: ActivatedRoute,
@@ -31,8 +39,9 @@ export class ClassromsDetailsComponent implements OnInit {
     this.classroomService.getClassroom(classroomId).pipe(
       finalize(() => this.loading = false)
     ).subscribe(
-        classroom => {
-          this.classroom = classroom
+        classroomWithStudents => {
+          this.classroom = classroomWithStudents.classroom
+          this.students = classroomWithStudents.students
         },
         err=>{
           console.error('Error while getting data from server')

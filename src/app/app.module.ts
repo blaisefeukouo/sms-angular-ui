@@ -23,6 +23,10 @@ import { ClassromsEditComponent } from './classroms-edit/classroms-edit.componen
 import { ClassromsAddComponent } from './classroms-add/classroms-add.component';
 import { ClassromsFormComponent } from './classroms-form/classroms-form.component';
 import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
+import { SchoolyearListComponent } from './schoolyear/schoolyear-list/schoolyear-list.component';
+import { SchoolyearAddComponent } from './schoolyear/schoolyear-add/schoolyear-add.component';
+import { SchoolyearEditComponent } from './schoolyear/schoolyear-edit/schoolyear-edit.component';
+import { SchoolyearDetailComponent } from './schoolyear/schoolyear-detail/schoolyear-detail.component';
 
 
 
@@ -44,7 +48,11 @@ import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator
     ClassromsEditComponent,
     ClassromsAddComponent,
     ClassromsFormComponent,
-    LoadingIndicatorComponent
+    LoadingIndicatorComponent,
+    SchoolyearListComponent,
+    SchoolyearAddComponent,
+    SchoolyearEditComponent,
+    SchoolyearDetailComponent
   ],
   imports: [
     HttpClientModule,

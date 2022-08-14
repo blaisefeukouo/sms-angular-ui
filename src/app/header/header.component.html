@@ -1,7 +1,7 @@
 <div class="fixed-top">
     <!--<div style="min-height: 50px; background-color:darkslateblue"></div>-->
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="#">School Management System</a>
+        <a class="navbar-brand" href="#">SMS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li *ngFor="let items of menuItems" class ="nav-item">
-                    <a class="nav-link" href="#" routerLink="{{items.link}}">{{items.name}} <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#" routerLink="{{items.link}}"><i class="{{items.faIcon}}" style="font-size: 23px;"></i>{{items.name}} </a>
                 </li>       
             </ul>
             <div class="mr-sm-2">

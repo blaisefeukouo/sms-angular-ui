@@ -23,7 +23,7 @@ export class ClassromsEditComponent implements OnInit {
   getclassroom(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.classroomService.getClassroom(id)
-      .subscribe(classroom => this.classroom = classroom);
+      .subscribe(classroomWithStudents => this.classroom = classroomWithStudents.classroom);
   }
   
 

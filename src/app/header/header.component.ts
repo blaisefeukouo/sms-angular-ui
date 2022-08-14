@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SchoolyearsService } from '../schoolyears.service';
+import { SchoolyearsService } from '../schoolYear/schoolyears.service';
 import { SchoolYear } from '../modele/schoolyear';
 import { GlobalConstants } from '../modele/global-constants';
 import { Router } from '@angular/router';
@@ -12,11 +12,11 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   menuItems=[
-    {linkId:1, name: 'Home', link:'/dashboard'},
-    {linkId:2, name: 'SchoolYears', link:'/dashboard'},
-    {linkId:3, name: 'Classrooms', link:'/classrooms'},
-    {linkId:4, name: 'Students', link:'/students'},
-    {linkId:5, name: 'Subjects', link:'/hero-form'}
+    {linkId:1, name: 'Home', link:'/dashboard', faIcon:'fa fa-home'},
+    {linkId:2, name: 'SchoolYears', link:'/schoolyears', faIcon:'fa fa-graduation-cap'},
+    {linkId:3, name: 'Classrooms', link:'/classrooms', faIcon:'fa fa-bank'},
+    {linkId:4, name: 'Students', link:'/students', faIcon:'fa fa-group'},
+    {linkId:5, name: 'Subjects', link:'/hero-form', faIcon:'fa fa-book'}
   ];
 
   schoolYears:SchoolYear[];
@@ -35,11 +35,11 @@ export class HeaderComponent implements OnInit {
 
   afterLoadingSchoolYears(schoolYears:SchoolYear[]):void{
     this.schoolYears = schoolYears
-    sessionStorage.setItem(GlobalConstants.currentSchoolYear,schoolYears[0].name);     
+    sessionStorage.setItem(GlobalConstants.currentSchoolYearName,schoolYears[0].name);     
   }
 
   onSelectSchoolYear(selectedSchoolYear:string){
-     sessionStorage.setItem(GlobalConstants.currentSchoolYear,selectedSchoolYear);  
+     sessionStorage.setItem(GlobalConstants.currentSchoolYearName,selectedSchoolYear);  
      this.router.navigate(['dashboard']);      
   }
 }

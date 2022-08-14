@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { SchoolYear } from './modele/schoolyear';
-import { Observable } from 'rxjs/internal/Observable';
-import {HttpClient} from '@angular/common/http';
-import { GlobalConstants } from './modele/global-constants';
+import { HttpClient } from '@angular/common/http';
+import { GlobalConstants } from '../modele/global-constants';
+import { Observable } from 'rxjs';
+import { SchoolYear } from '../modele/schoolyear';
 
 @Injectable({
   providedIn: 'root'
