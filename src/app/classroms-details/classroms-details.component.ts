@@ -39,7 +39,7 @@ export class ClassromsDetailsComponent implements OnInit {
     this.classroomService.getClassroom(classroomId).pipe(
       finalize(() => this.loading = false)
     ).subscribe(
-        classroomWithStudents => {
+        classroomWithStudents => {          
           this.classroom = classroomWithStudents.classroom
           this.students = classroomWithStudents.students
         },

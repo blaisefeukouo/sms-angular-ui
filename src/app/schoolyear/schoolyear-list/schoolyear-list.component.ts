@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SchoolyearsService } from '../schoolyears.service';
 import { SchoolYear } from 'src/app/modele/schoolyear';
 import { finalize } from 'rxjs/operators';
+import { SchoolyearDetailComponent } from '../schoolyear-detail/schoolyear-detail.component';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-schoolyear-list',
@@ -16,9 +18,9 @@ export class SchoolyearListComponent implements OnInit {
     {linkId:4, name: 'State'},    
   ];
   loading = false;
-  
+  closeResult: string;
   schoolyears:SchoolYear[];
-  constructor(private schoolyearService:SchoolyearsService) { }
+  constructor(private schoolyearService:SchoolyearsService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.loadSchoolYears();
@@ -37,5 +39,32 @@ loadSchoolYears(): void {
     }
   );  
   
+}
+
+openModal(modal, schoolYear:SchoolYear): void {
+  this.modalService.open(modal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {  
+    this.closeResult = `${result}`;
+    if('OK'===this.closeResult){
+      this.deleteSchoolYear(schoolYear);
+    }
+  }, (reason) => {
+    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  });
+}
+
+private getDismissReason(reason: any): string {
+  if (reason === ModalDismissReasons.ESC) {
+    return 'by pressing ESC';
+  } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+    return 'by clicking on a backdrop';
+  } else {
+    return  `with: ${reason}`;
+  }
+}
+
+deleteSchoolYear(schoolYear:SchoolYear): void{
+  this.schoolyearService.deleteSchoolYear(schoolYear.id).subscribe((response) => {      
+    this.loadSchoolYears();
+  });
 }
 }

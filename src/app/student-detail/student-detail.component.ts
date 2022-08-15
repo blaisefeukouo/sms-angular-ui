@@ -45,7 +45,7 @@ export class StudentDetailComponent implements OnInit {
 
   goBack(): void {
     //this.location.back();
-    this.router.navigate(['schoolyears'])
+    this.router.navigate(['students'])
   }
 
 }
