@@ -20,6 +20,9 @@
             <td>{{student.firstName}}</td>
             <td>{{student.lastName}}</td>
             <td>{{student.phoneNumber}}</td> 
+            
+            <td *ngIf="student.currentClassroom; else no_classroom_content">{{student.currentClassroom.name}}</td>            
+
             <td><a  routerLink="/student/edit/{{student.id}}">
                   <i class="fa fa-edit" style="font-size: 20px;"></i>
                 </a>
@@ -56,5 +59,7 @@
       <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
     </div>
   </ng-template>
+
+  <ng-template #no_classroom_content><td></td></ng-template>
   
   

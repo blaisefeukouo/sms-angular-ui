@@ -15,6 +15,7 @@ export class StudentsComponent implements OnInit {
     {linkId:2, name: 'Firstname'},
     {linkId:3, name: 'Lastname'},
     {linkId:4, name: 'Phone number'},
+    {linkId:5, name: 'Classroom'},
   ];
 
   students:Student[];
@@ -41,6 +42,11 @@ export class StudentsComponent implements OnInit {
       })
     ).subscribe(students=>{
       this.students=students
+      /*this.students.forEach(student=>{
+        if(student.currentClassroom!=null){
+          console.log(student.firstName+": classroom="+student.currentClassroom.name+" ");
+        }
+      })*/
     },
     err=>{
       console.error('Error while getting data from server')
